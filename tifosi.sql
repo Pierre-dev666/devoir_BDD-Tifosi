@@ -12,7 +12,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_Client=@@CHARACTER_SET_Client */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
@@ -31,10 +31,10 @@ USE `tifosi`;
 
 DROP TABLE IF EXISTS `achete`;
 CREATE TABLE IF NOT EXISTS `achete` (
-  `id_Client` int NOT NULL,
+  `id_client` int NOT NULL,
   `id_foccacia` int NOT NULL,
   `jour` date NOT NULL,
-  PRIMARY KEY (`id_Client`,`id_foccacia`,`jour`),
+  PRIMARY KEY (`id_client`,`id_foccacia`,`jour`),
   KEY `id_foccacia` (`id_foccacia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -74,32 +74,32 @@ INSERT INTO `boisson` (`id_boisson`, `nom`, `id_marque`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- Table structure for table `Client`
 --
 
-DROP TABLE IF EXISTS `client`;
-CREATE TABLE IF NOT EXISTS `client` (
-  `id_Client` int NOT NULL,
+DROP TABLE IF EXISTS `Client`;
+CREATE TABLE IF NOT EXISTS `Client` (
+  `id_client` int NOT NULL,
   `nom` varchar(45) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
   `code_postal` int DEFAULT NULL,
-  PRIMARY KEY (`id_Client`)
+  PRIMARY KEY (`id_client`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `client`
+-- Dumping data for table `Client`
 --
 
-INSERT INTO `client` (`id_Client`, `nom`, `email`, `code_postal`) VALUES
-(1, 'Alain Dasilva', 'Alain.Dasilva@client.fr', 31000),
-(2, 'Carlos Martinez', 'Carlos.Martinez@client.fr', 47000),
-(3, 'Claire Lepoint', 'Claire.Lepoint@client.fr', 33000),
-(4, 'David Beckham', 'David.Beckham@client.fr', 75000),
-(5, 'Élodie Davinci', 'Élodie.Davinci@client.fr', 66000),
-(6, 'Frances Desmond', 'Frances.Desmond@client.fr', 31000),
-(7, 'Gaby Leroy', 'Gaby.Leroy@client.fr', 33200),
-(8, 'Hugo Decrypte', 'Hugo.Decrypte@client.fr', 47300),
-(9, 'Karol Simon', 'Karol.Simon@client.fr', 47150);
+INSERT INTO `Client` (`id_client`, `nom`, `email`, `code_postal`) VALUES
+(1, 'Alain Dasilva', 'Alain.Dasilva@Client.fr', 31000),
+(2, 'Carlos Martinez', 'Carlos.Martinez@Client.fr', 47000),
+(3, 'Claire Lepoint', 'Claire.Lepoint@Client.fr', 33000),
+(4, 'David Beckham', 'David.Beckham@Client.fr', 75000),
+(5, 'Élodie Davinci', 'Élodie.Davinci@Client.fr', 66000),
+(6, 'Frances Desmond', 'Frances.Desmond@Client.fr', 31000),
+(7, 'Gaby Leroy', 'Gaby.Leroy@Client.fr', 33200),
+(8, 'Hugo Decrypte', 'Hugo.Decrypte@Client.fr', 47300),
+(9, 'Karol Simon', 'Karol.Simon@Client.fr', 47150);
 
 -- --------------------------------------------------------
 
@@ -322,10 +322,10 @@ CREATE TABLE IF NOT EXISTS `menu` (
 
 DROP TABLE IF EXISTS `paye`;
 CREATE TABLE IF NOT EXISTS `paye` (
-  `id_Client` int NOT NULL,
+  `id_client` int NOT NULL,
   `id_menu` int NOT NULL,
   `jour` date NOT NULL,
-  PRIMARY KEY (`id_Client`,`id_menu`,`jour`),
+  PRIMARY KEY (`id_client`,`id_menu`,`jour`),
   KEY `id_menu` (`id_menu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -337,7 +337,7 @@ CREATE TABLE IF NOT EXISTS `paye` (
 -- Constraints for table `achete`
 --
 ALTER TABLE `achete`
-  ADD CONSTRAINT `achete_ibfk_1` FOREIGN KEY (`id_Client`) REFERENCES `client` (`id_Client`),
+  ADD CONSTRAINT `achete_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `Client` (`id_client`),
   ADD CONSTRAINT `achete_ibfk_2` FOREIGN KEY (`id_foccacia`) REFERENCES `foccacia` (`id_foccacia`);
 
 --
@@ -370,10 +370,10 @@ ALTER TABLE `menu`
 -- Constraints for table `paye`
 --
 ALTER TABLE `paye`
-  ADD CONSTRAINT `paye_ibfk_1` FOREIGN KEY (`id_Client`) REFERENCES `client` (`id_Client`),
+  ADD CONSTRAINT `paye_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `Client` (`id_client`),
   ADD CONSTRAINT `paye_ibfk_2` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_Client=@OLD_CHARACTER_SET_Client */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
