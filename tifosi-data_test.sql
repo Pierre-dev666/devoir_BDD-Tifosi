@@ -85,7 +85,7 @@ INSERT INTO `marque` (`id_marque`, `nom`) VALUES
 (4, 'Pepsico');
 
 
-INSERT INTO `achete` (`id_Client`, `id_focaccia`, `jour`) VALUES
+INSERT INTO `achete` (`id_Client`, `id_foccacia`, `jour`) VALUES
 (1, 7, '2024-04-03'),
 (2, 5, '2024-04-04'),
 (3, 2, '2024-04-05'),
@@ -100,7 +100,7 @@ INSERT INTO `paye` (`id_Client`, `id_menu`, `jour`) VALUES
 (9, 4, '2024-04-04');
 
 
-INSERT INTO `comprend` (`id_focaccia`, `id_ingredient`) VALUES
+INSERT INTO `comprend` (`id_foccacia`, `id_ingredient`) VALUES
 -- Ingrédients Mozaccia
 (1, 1), (1, 3), (1, 5), (1, 7), (1, 9), (1, 13), (1, 16), (1, 18), (1, 20), (1, 25),
 -- Ingrédient Gorgonzollaccia

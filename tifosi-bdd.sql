@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS achete (
   jour DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id_Client, id_foccacia),
   FOREIGN KEY (id_Client) REFERENCES client (id_Client),
-  FOREIGN KEY (id_foccacia) REFERENCES focaccia (id_foccacia)
+  FOREIGN KEY (id_foccacia) REFERENCES foccacia (id_foccacia)
 );
 
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS comprend (
   id_foccacia INT NOT NULL,
   id_ingredient INT NOT NULL,
   PRIMARY KEY (id_foccacia, id_ingredient),
-  FOREIGN KEY (id_foccacia) REFERENCES focaccia (id_foccacia),
+  FOREIGN KEY (id_foccacia) REFERENCES foccacia (id_foccacia),
   FOREIGN KEY (id_ingredient) REFERENCES ingredient (id_ingredient)
 );
 
