@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Client (
 CREATE TABLE IF NOT EXISTS foccacia (
   id_foccacia INT AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(50) NOT NULL,
-  prix FLOAT NOT NULL
+  prix DECIMAL(5,2) NOT NULL
 );
 
 
@@ -31,15 +31,12 @@ CREATE TABLE IF NOT EXISTS marque (
 CREATE TABLE IF NOT EXISTS menu (
   id_menu INT AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(50) NOT NULL,
-  prix FLOAT NOT NULL,
-  id_foccacia INT NOT NULL,
-  FOREIGN KEY (id_foccacia) REFERENCES foccacia (id_foccacia)
+  prix DECIMAL(5,2) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS boisson (
   id_boisson INT AUTO_INCREMENT PRIMARY KEY,
-  nom VARCHAR(50) NOT NULL,
-  id_marque INT NOT NULL
+  nom VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS achete (
@@ -72,15 +69,15 @@ CREATE TABLE IF NOT EXISTS contient (
 
 
 CREATE TABLE IF NOT EXISTS appartient (
-  id_marque INT NOT NULL,
   id_boisson INT NOT NULL,
-  PRIMARY KEY (id_marque, id_boisson),
+  id_marque INT NOT NULL,
+  PRIMARY KEY (id_boisson, id_marque),
   FOREIGN KEY (id_marque) REFERENCES marque (id_marque),
   FOREIGN KEY (id_boisson) REFERENCES boisson (id_boisson)
 );
 
 
-CREATE TABLE IF NOT EXISTS estconstitué (
+CREATE TABLE IF NOT EXISTS est_constitué (
   id_menu INT NOT NULL,
   id_foccacia INT NOT NULL,
   PRIMARY KEY (id_menu, id_foccacia),

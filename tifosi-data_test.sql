@@ -1,3 +1,10 @@
+/*Create user*/
+CREATE USER IF NOT EXISTS 'Administrateur01'@'Admin01' IDENTIFIED WITH sha256_password BY '***';
+GRANT ALL PRIVILEGES ON *.* TO 'Administrateur01'@'Admin01' WITH GRANT OPTION;
+ALTER USER 'Administrateur01'@'Admin01' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+CREATE DATABASE IF NOT EXISTS `Administrateur01`;
+GRANT ALL PRIVILEGES ON `Administrateur01`.* TO 'Administrateur01'@'Admin01';
+
 USE tifosi;
 
 
@@ -52,15 +59,15 @@ INSERT INTO `ingredient` (`id_ingredient`, `nom`) VALUES
 (25, 'Mozarella');
 
 
-INSERT INTO `menu` (`id_menu`, `nom`, `prix`, `id_foccacia`) VALUES
-(1, 'Menu Mozaccia', 9.8, 1),
-(2, 'Menu Gorgonzollaccia', 10.8, 2),
-(3, 'Menu Raclaccia', 8.9, 3),
-(4, 'Menu Emmentalaccia', 9.8, 4),
-(5, 'Menu Tradizione', 8.9, 5),
-(6, 'Menu Hawaienne', 11.2, 6),
-(7, 'Menu Américaine', 10.8, 7),
-(8, 'Menu Paysanne', 12.8, 8);
+INSERT INTO `menu` (`id_menu`, `nom`, `prix`) VALUES
+(1, 'Menu Mozaccia', 9.8),
+(2, 'Menu Gorgonzollaccia', 10.8),
+(3, 'Menu Raclaccia', 8.9),
+(4, 'Menu Emmentalaccia', 9.8),
+(5, 'Menu Tradizione', 8.9),
+(6, 'Menu Hawaienne', 11.2),
+(7, 'Menu Américaine', 10.8),
+(8, 'Menu Paysanne', 12.8);
 
 
 INSERT INTO `marque` (`id_marque`, `nom`) VALUES
@@ -70,19 +77,19 @@ INSERT INTO `marque` (`id_marque`, `nom`) VALUES
 (4, 'Pepsico');
 
 
-INSERT INTO `boisson` (`id_boisson`, `nom`, `id_marque`) VALUES
-(1, 'Coca-cola zéro', 1),
-(2, 'Coca-cola original', 1),
-(3, 'Fanta citron', 1),
-(4, 'Fanta orange', 1),
-(5, 'Capri-sun', 1),
-(6, 'Pepsi', 4),
-(7, 'Pepsi Max Zéro', 4),
-(8, 'Lipton zéro citron', 4),
-(9, 'Lipton Peach', 4),
-(10, 'Monster energy ultra gold', 3),
-(11, 'Monster energy ultra blue', 3),
-(12, 'Eau de source', 2);
+INSERT INTO `boisson` (`id_boisson`, `nom`) VALUES
+(1, 'Coca-cola zéro'),
+(2, 'Coca-cola original'),
+(3, 'Fanta citron'),
+(4, 'Fanta orange'),
+(5, 'Capri-sun'),
+(6, 'Pepsi'),
+(7, 'Pepsi Max Zéro'),
+(8, 'Lipton zéro citron'),
+(9, 'Lipton Peach'),
+(10, 'Monster energy ultra gold'),
+(11, 'Monster energy ultra blue'),
+(12, 'Eau de source');
 
 
 INSERT INTO `achete` (`id_client`, `id_menu`, `jour`) VALUES
@@ -110,18 +117,16 @@ INSERT INTO `comprend` (`id_foccacia`, `id_ingredient`, `quantite`) VALUES
 -- Ingrédient Paysanne
 (8, 1, 2), (8, 3, 20), (8, 6, 200), (8, 7, 40), (8, 8, 50), (8, 9, 20), (8, 13, 80), (8, 14, 50), (8, 16, 20), (8, 18, 50), (8, 20, 1), (8, 21, 80);
 
+INSERT INTO `appartient` (`id_boisson`, `id_marque`) VALUES
+(1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 4), (7, 4), (8, 4), (9, 4), (10, 3), (11, 3), (12, 2);
 
 INSERT INTO `contient` (`id_menu`, `id_boisson`)
 SELECT m.id_menu, b.id_boisson
 FROM menu m
 CROSS JOIN boisson b;
 
-INSERT INTO `estconstitué` (`id_menu`, `id_foccacia`)
+INSERT INTO `est_constitué` (`id_menu`, `id_foccacia`)
 SELECT m.id_menu, f.id_foccacia
 FROM menu m
 CROSS JOIN foccacia f;
 
-INSERT INTO `appartient` (`id_boisson`, `id_marque`)
-SELECT m.id_marque, b.id_boisson
-FROM boisson b
-CROSS JOIN marque m;
